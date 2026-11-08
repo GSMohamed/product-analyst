@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الساعة المهمة · منصة تحليلات المنتجات وذكاء الأعمال | Data Decision Engine</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"IBM Plex Sans Arabic"', '"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              900: '#4c1d95',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: "IBM Plex Sans Arabic", "Plus Jakarta Sans", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .tnum { font-variant-numeric: tabular-nums; }
+    
+    /* Heatmap Retention Matrix Cells */
+    .heat-100 { background-color: #047857; color: #ffffff; }
+    .heat-60  { background-color: #059669; color: #ffffff; }
+    .heat-45  { background-color: #10b981; color: #ffffff; }
+    .heat-35  { background-color: #34d399; color: #064e3b; }
+    .heat-25  { background-color: #a7f3d0; color: #064e3b; }
+    .heat-15  { background-color: #d1fae5; color: #047857; }
+    .heat-low { background-color: #f1f5f9; color: #94a3b8; }
+
+    /* SQL Code Styling */
+    .sql-code-block {
+      background: #090d16;
+      font-family: "JetBrains Mono", monospace;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 antialiased selection:bg-violet-600 selection:text-white">
+
+  <!-- ================= TOP NOTICE BAR ================= -->
+  <div class="bg-gradient-to-r from-violet-950 via-purple-900 to-slate-900 text-white px-4 py-2.5 text-xs shadow-inner">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-violet-500/25 border border-violet-400/30 text-violet-200 font-bold text-[11px] uppercase">
+          <i data-lucide="award" class="w-3.5 h-3.5 text-amber-300"></i> Product Analytics Portfolio Project
+        </span>
+        <span class="hidden md:inline text-slate-400">|</span>
+        <span class="text-violet-100 font-medium text-xs">
+          تحليل متكامل لمنتج SaaS: مسار التحويل (Funnel)، مصفوفات الاحتفاظ (Cohorts)، واستعلامات SQL بنوافذ متقدمة.
+        </span>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold transition-all text-xs shadow-xs">
+          <i data-lucide="user" class="w-3.5 h-3.5"></i>
+          <span>عرض البورتفوليو الشخصي</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN HEADER / NAV ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 gap-4">
+        
+        <!-- Brand -->
+        <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('dashboard')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-700 to-purple-600 flex items-center justify-center text-white shadow-md shadow-violet-500/20">
+            <i data-lucide="activity" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 font-bold text-slate-900 text-base leading-tight">
+              <span>الساعة المهمة</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-violet-100 text-violet-700 font-bold">Data Decision Engine V2</span>
+            </div>
+            <div class="text-[11px] text-slate-500 font-semibold tracking-tight">AUTONOMOUS BI & PRODUCT ANALYTICS</div>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="hidden lg:flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
+          <button onclick="switchTab('dashboard')" id="tab-btn-dashboard" class="nav-tab active flex items-center gap-2 px-3 py-2 rounded-lg font-bold text-violet-700 bg-white shadow-xs transition-all">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+            <span>لوحة أداء المنتج (Overview)</span>
+          </button>
+          <button onclick="switchTab('funnel')" id="tab-btn-funnel" class="nav-tab flex items-center gap-2 px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 transition-all">
+            <i data-lucide="filter" class="w-4 h-4"></i>
+            <span>مسار التحويل (Conversion Funnel)</span>
+          </button>
+          <button onclick="switchTab('cohorts')" id="tab-btn-cohorts" class="nav-tab flex items-center gap-2 px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 transition-all">
+            <i data-lucide="layers" class="w-4 h-4"></i>
+            <span>مصفوفة الاحتفاظ (Cohort Retention)</span>
+          </button>
+          <button onclick="switchTab('sql')" id="tab-btn-sql" class="nav-tab flex items-center gap-2 px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 transition-all">
+            <i data-lucide="terminal" class="w-4 h-4"></i>
+            <span>استعلامات SQL (Window Queries)</span>
+          </button>
+          <button onclick="switchTab('lab')" id="tab-btn-lab" class="nav-tab flex items-center gap-2 px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 transition-all">
+            <i data-lucide="file-check-2" class="w-4 h-4"></i>
+            <span>جودة وتنظيف البيانات (ETL Audit)</span>
+          </button>
+          <button onclick="switchTab('tracking')" id="tab-btn-tracking" class="nav-tab flex items-center gap-2 px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 transition-all">
+            <i data-lucide="target" class="w-4 h-4"></i>
+            <span>هندسة التتبع (GA4 / Mixpanel)</span>
+          </button>
+        </nav>
+
+        <!-- Right Side Controls -->
+        <div class="flex items-center gap-2.5">
+          <button onclick="toggleLang()" class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 font-bold text-slate-700 shadow-xs transition-all">
+            <i data-lucide="globe" class="w-3.5 h-3.5 text-violet-600"></i>
+            <span id="lang-btn-text">English</span>
+          </button>
+
+          <div class="hidden sm:flex items-center gap-2 pl-2 border-r rtl:border-r-0 rtl:border-l border-slate-200">
+            <div class="w-8 h-8 rounded-full bg-violet-700 text-white font-bold text-xs flex items-center justify-center">
+              MS
+            </div>
+            <div class="text-start">
+              <div class="text-xs font-bold text-slate-900">Mohamed Shaban</div>
+              <div class="text-[10px] text-slate-500 font-medium">Product Analyst</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Mobile Navigation Bar -->
+      <div class="lg:hidden flex items-center gap-1 overflow-x-auto py-2 border-t border-slate-100 text-xs">
+        <button onclick="switchTab('dashboard')" class="px-3 py-1 rounded-md bg-violet-100 text-violet-800 font-bold whitespace-nowrap">Overview</button>
+        <button onclick="switchTab('funnel')" class="px-3 py-1 rounded-md bg-slate-100 text-slate-600 font-medium whitespace-nowrap">Funnel</button>
+        <button onclick="switchTab('cohorts')" class="px-3 py-1 rounded-md bg-slate-100 text-slate-600 font-medium whitespace-nowrap">Cohorts</button>
+        <button onclick="switchTab('sql')" class="px-3 py-1 rounded-md bg-slate-100 text-slate-600 font-medium whitespace-nowrap">SQL Queries</button>
+        <button onclick="switchTab('lab')" class="px-3 py-1 rounded-md bg-slate-100 text-slate-600 font-medium whitespace-nowrap">Data Quality</button>
+        <button onclick="switchTab('tracking')" class="px-3 py-1 rounded-md bg-slate-100 text-slate-600 font-medium whitespace-nowrap">Tracking</button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= SUBHEADER / DATASET STATUS ================= -->
+  <section class="bg-white border-b border-slate-200 py-3 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
+      
+      <div class="flex items-center flex-wrap gap-2 text-slate-600">
+        <span class="inline-flex items-center gap-1.5 font-bold text-slate-900 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
+          <i data-lucide="database" class="w-3.5 h-3.5 text-violet-600"></i>
+          <span>saas_user_analytics_simulated.parquet</span>
+        </span>
+        <span class="text-slate-300">•</span>
+        <span class="tnum"><b class="text-slate-900">142,890</b> حدث مسجل</span>
+        <span class="text-slate-300">•</span>
+        <span class="tnum"><b class="text-slate-900">62,400</b> مستخدم فريد (MAU)</span>
+<span class="text-slate-300">•</span>
+<span class="px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 font-bold">بيانات محاكاة (Synthetic) لأغراض البورتفوليو</span>
+        <span class="text-slate-300">•</span>
+        <span class="inline-flex items-center gap-1 text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-bold border border-emerald-200">
+          <i data-lucide="check-circle-2" class="w-3 h-3 text-emerald-600"></i>
+          <span>جودة البيانات: 96% موثوقة</span>
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="text-slate-500 font-medium">البيئة:</span>
+        <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-mono font-semibold text-[11px]">PostgreSQL 16 · Python ETL</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= MAIN CONTENT CONTAINER ================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ========================================================= -->
+    <!-- TAB 1: PRODUCT KPIS & EXECUTIVE OVERVIEW                 -->
+    <!-- ========================================================= -->
+    <div id="view-dashboard" class="tab-view space-y-6">
+      
+      <!-- Top Signal Cards -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5">
+        
+        <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-xs">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">المستخدمون النشطون (DAU)</div>
+          <div class="mt-2 flex items-baseline justify-between">
+            <span class="text-2xl font-black text-slate-900 tnum">14,820</span>
+            <span class="text-xs font-bold text-emerald-600">+8.4%</span>
+          </div>
+          <div class="text-[11px] text-slate-400 mt-1">تفاعل يومي متصاعد</div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-xs">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">النشطون شهرياً (MAU)</div>
+          <div class="mt-2 flex items-baseline justify-between">
+            <span class="text-2xl font-black text-slate-900 tnum">62,400</span>
+            <span class="text-xs font-bold text-emerald-600">+12.1%</span>
+          </div>
+          <div class="text-[11px] text-slate-400 mt-1">نمو قاعدة المشتركين</div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-xs">
+          <div class="text-[11px] font-bold text-violet-700 uppercase">مؤشر الالتصاق (Stickiness)</div>
+          <div class="mt-2 flex items-baseline justify-between">
+            <span class="text-2xl font-black text-violet-700 tnum">23.7%</span>
+            <span class="text-xs font-bold text-emerald-600">DAU/MAU</span>
+          </div>
+          <div class="text-[11px] text-slate-400 mt-1">أعلى من معيار الـ SaaS (20%)</div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-xs">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">معدل الانقطاع (Churn)</div>
+          <div class="mt-2 flex items-baseline justify-between">
+            <span class="text-2xl font-black text-slate-900 tnum">2.1%</span>
+            <span class="text-xs font-bold text-emerald-600">-0.4%</span>
+          </div>
+          <div class="text-[11px] text-slate-400 mt-1">انخفاض في إلغاء الاشتراكات</div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-xs">
+          <div class="text-[11px] font-bold text-slate-500 uppercase">متوسط الإيراد (ARPU)</div>
+          <div class="mt-2 flex items-baseline justify-between">
+            <span class="text-2xl font-black text-slate-900 tnum">$48.50</span>
+            <span class="text-xs font-bold text-emerald-600">+5.6%</span>
+          </div>
+          <div class="text-[11px] text-slate-400 mt-1">LTV ≈ $2,310 = ARPU ÷ Churn (CAC: $180)</div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-xs">
+          <div class="text-[11px] font-bold text-emerald-700 uppercase">صافي الاحتفاظ (NRR)</div>
+          <div class="mt-2 flex items-baseline justify-between">
+            <span class="text-2xl font-black text-emerald-700 tnum">116.4%</span>
+            <span class="text-xs font-bold text-emerald-600">فوق 100%</span>
+          </div>
+          <div class="text-[11px] text-slate-400 mt-1">توسع المشتركين الحاليين</div>
+        </div>
+
+      </div>
+
+      <!-- Main Chart & Strategic Insights -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Activity Chart -->
+        <div class="lg:col-span-2 bg-white rounded-xl p-6 border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+            <div>
+              <h3 class="font-bold text-slate-900 text-sm">مسار نمو وتكرار استخدام المنتج (Product Usage Trends)</h3>
+              <p class="text-xs text-slate-500 mt-0.5">تتبع زمني يومي لتفاعل المستخدمين والأحداث على مدار آخر 30 يوماً</p>
+            </div>
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 font-semibold">Events vs DAU</span>
+          </div>
+          <div class="h-72 w-full">
+            <canvas id="chart-product-activity"></canvas>
+          </div>
+        </div>
+
+        <!-- Product Analyst Findings -->
+        <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-violet-100 text-violet-800 text-xs font-bold mb-3">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+              <span>ملاحظات واستنتاجات المحلل (Product Insights)</span>
+            </div>
+
+            <h4 class="font-bold text-slate-900 text-sm mb-3">عامل التفعيل الأساسي (The "Aha! Moment"):</h4>
+            
+            <div class="space-y-3 text-xs text-slate-600 leading-relaxed">
+              <div class="p-3 bg-slate-50 rounded-lg border border-slate-200/80">
+                <span class="font-bold text-slate-800">1. سرعة تفعيل أول تقرير:</span>
+                <p class="mt-0.5">المستخدمون الذين قاموا بتوليد أول تقرير تحليلي خلال <strong>أول 48 ساعة</strong> من التسجيل حققوا معدل احتفاظ باليوم الثلاثين (D30 Retention) أعلى بـ <strong>14.2 نقطة مئوية</strong> مقارنة بغيرهم.</p>
+              </div>
+
+              <div class="p-3 bg-rose-50/60 rounded-lg border border-rose-200">
+                <span class="font-bold text-rose-900">2. نقطة التسرب الأكبر (Biggest Drop):</span>
+                <p class="mt-0.5 text-rose-800">تسرب 33.1% من المشتركين عند مرحلة دعوة الفريق في الـ Onboarding. جعل هذه الخطوة اختيارية يعيد 1,500 مستخدم نشط شهرياً.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 text-xs text-slate-500 flex items-center justify-between">
+            <span>محسوبة استناداً لمصفوفة الأفواج</span>
+            <button onclick="switchTab('cohorts')" class="font-bold text-violet-700 hover:underline">انتقل للـ Cohorts ➔</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- TAB 2: CONVERSION FUNNEL & DROP-OFFS                     -->
+    <!-- ========================================================= -->
+    <div id="view-funnel" class="tab-view space-y-6 hidden">
+      <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-xs">
+        
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-5 border-b border-slate-200">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-violet-100 text-violet-800 text-xs font-bold mb-1">
+              <i data-lucide="filter" class="w-3.5 h-3.5"></i> Conversion Lifecycle Telemetry
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">تحليل مسار التحويل ومواقع التسرب (Friction Diagnostics)</h2>
+            <p class="text-xs text-slate-500 mt-1">تتبع رحلة المستخدم من أول زيارة وحتى الاشتراك المدفوع مع حساب نسب التحويل بين كل مرحلة</p>
+          </div>
+          <div class="text-xs font-semibold text-slate-600 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
+            إجمالي الزيارات: 48,200 مستخدم
+          </div>
+        </div>
+
+        <!-- 5 Funnel Stages Cards -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-5 gap-3">
+          
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="text-[11px] font-bold text-slate-400">المرحلة 1</div>
+              <div class="font-bold text-slate-900 text-sm mt-0.5">زيارة الموقع</div>
+              <div class="text-2xl font-black text-slate-900 mt-2 tnum">48,200</div>
+            </div>
+            <div class="text-[11px] text-slate-500 pt-2 border-t border-slate-200 mt-3 font-semibold">
+              100% (نقطة الأساس)
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="text-[11px] font-bold text-slate-400">المرحلة 2</div>
+              <div class="font-bold text-slate-900 text-sm mt-0.5">إنشاء حساب</div>
+              <div class="text-2xl font-black text-slate-900 mt-2 tnum">30,125</div>
+            </div>
+            <div class="text-[11px] text-slate-600 pt-2 border-t border-slate-200 mt-3 font-bold">
+              62.5% من الزوار
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-rose-50/50 border-2 border-rose-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-[11px] font-bold text-rose-700">
+                <span>المرحلة 3</span>
+                <span class="bg-rose-200 px-1.5 py-0.2 rounded text-[10px]">أعلى تسرب</span>
+              </div>
+              <div class="font-bold text-slate-900 text-sm mt-0.5">إكمال التهيئة</div>
+              <div class="text-2xl font-black text-rose-700 mt-2 tnum">20,150</div>
+            </div>
+            <div class="text-[11px] text-rose-700 pt-2 border-t border-rose-200 mt-3 font-extrabold">
+              -33.1% تسرب (فقد 9,975)
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="text-[11px] font-bold text-slate-400">المرحلة 4</div>
+              <div class="font-bold text-slate-900 text-sm mt-0.5">تفعيل الميزة (Aha!)</div>
+              <div class="text-2xl font-black text-slate-900 mt-2 tnum">13,688</div>
+            </div>
+            <div class="text-[11px] text-slate-600 pt-2 border-t border-slate-200 mt-3 font-bold">
+              28.4% من الزوار
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-emerald-50/60 border border-emerald-300 flex flex-col justify-between">
+            <div>
+              <div class="text-[11px] font-bold text-emerald-700">المرحلة 5 (الهدف)</div>
+              <div class="font-bold text-slate-900 text-sm mt-0.5">الاشتراك المدفوع</div>
+              <div class="text-2xl font-black text-emerald-700 mt-2 tnum">4,723</div>
+            </div>
+            <div class="text-[11px] text-emerald-800 pt-2 border-t border-emerald-200 mt-3 font-extrabold">
+              9.8% معدل التحويل الكلي
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Funnel Canvas -->
+        <div class="mt-8 pt-6 border-t border-slate-100">
+          <h3 class="text-xs font-bold text-slate-700 uppercase mb-3">رسم بياني تنازلي لمسار التحويل</h3>
+          <div class="h-64 w-full">
+            <canvas id="chart-funnel-bar"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- TAB 3: COHORT RETENTION MATRIX                           -->
+    <!-- ========================================================= -->
+    <div id="view-cohorts" class="tab-view space-y-6 hidden">
+      <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-xs">
+        
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-5 border-b border-slate-200">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold mb-1">
+              <i data-lucide="layers" class="w-3.5 h-3.5"></i> Longitudinal Retention Cohort Analysis
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">مصفوفة الاحتفاظ الأسبوعية بالعملاء (Cohort Retention Heatmap)</h2>
+            <p class="text-xs text-slate-500 mt-1">تتبع نسبة المستخدمين الذين يستمرون في استخدام المنتج أسبوعاً تلو الآخر عبر أفواج الانضمام</p>
+          </div>
+          <span class="text-xs px-3 py-1 rounded bg-slate-100 text-slate-700 font-semibold font-mono">Cadence: Weekly</span>
+        </div>
+
+        <!-- Heatmap Table -->
+        <div class="mt-6 overflow-x-auto">
+          <table class="w-full text-xs text-center border-collapse">
+            <thead>
+              <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                <th class="py-2.5 px-3 text-start">فوج الانضمام (Cohort)</th>
+                <th class="py-2.5 px-2">الحجم</th>
+                <th class="py-2.5 px-2">W0</th>
+                <th class="py-2.5 px-2">W1</th>
+                <th class="py-2.5 px-2">W2</th>
+                <th class="py-2.5 px-2">W3</th>
+                <th class="py-2.5 px-2">W4</th>
+                <th class="py-2.5 px-2">W5</th>
+                <th class="py-2.5 px-2">W6</th>
+                <th class="py-2.5 px-2">W7</th>
+                <th class="py-2.5 px-2">W8</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-medium tnum">
+              <tr>
+                <td class="py-2.5 px-3 text-start font-bold text-slate-800">الأسبوع 12</td>
+                <td class="py-2.5 px-2 text-slate-500">4,280</td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-100 font-bold">100%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-45">44.2%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-35">34.1%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-25">29.6%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-25">25.3%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-15">23.1%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-15">22.0%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-15">21.4%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-15">20.8%</span></td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-start font-bold text-slate-800">الأسبوع 13</td>
+                <td class="py-2.5 px-2 text-slate-500">4,510</td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-100 font-bold">100%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-45">46.5%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-35">35.8%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-25">30.2%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-25">26.4%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-15">24.5%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-15">23.2%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-15">22.1%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-low">—</span></td>
+              </tr>
+              <tr class="bg-violet-50/50">
+                <td class="py-2.5 px-3 text-start font-bold text-violet-900 flex items-center gap-1.5">
+                  <span>الأسبوع 14 (تحديث V2)</span>
+                  <span class="text-[9px] bg-violet-200 text-violet-800 px-1 py-0.2 rounded font-bold">Release</span>
+                </td>
+                <td class="py-2.5 px-2 text-slate-500">5,420</td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-100 font-bold">100%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-60 font-semibold">53.4%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-45">41.6%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-35">36.5%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-35 font-bold">32.8%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-25">30.2%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-low">—</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-low">—</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-low">—</span></td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-start font-bold text-slate-800">الأسبوع 15</td>
+                <td class="py-2.5 px-2 text-slate-500">5,190</td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-100 font-bold">100%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-60 font-semibold">55.1%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-45">43.0%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-35">37.8%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-35 font-bold">34.1%</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-low">—</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-low">—</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-low">—</span></td>
+                <td class="p-1.5"><span class="block py-1 rounded heat-low">—</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-1">
+          <div class="font-bold text-slate-900">استنتاج الاحتفاظ بعد تحديث V2 (Retention Plateau):</div>
+          <p>
+            الأفواج اللي بعد تحديث V2 (الأسبوع 14 و15) بتحتفظ بنسبة <strong>32.8% إلى 34.1%</strong> عند الأسبوع الرابع، مقابل <strong>25.3% إلى 26.4%</strong> للأفواج الأقدم (12 و13). منحنى الفوج 12 لسه بينزل ببطء لحد 20.8% في W8، فالاستقرار مرتبط بالتحديث ومحتاج متابعة لفترة أطول قبل الجزم بملاءمة المنتج للسوق.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- TAB 4: PRODUCTION SQL QUERIES                            -->
+    <!-- ========================================================= -->
+    <div id="view-sql" class="tab-view space-y-6 hidden">
+      <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-xs">
+        
+        <div class="pb-4 mb-4 border-b border-slate-200">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 text-xs font-bold mb-1">
+            <i data-lucide="terminal" class="w-3.5 h-3.5"></i> SQL Window Functions & Joins
+          </div>
+          <h2 class="text-xl font-bold text-slate-900">استعلامات SQL المستخدمة لاستخراج البيانات ودوال النوافذ</h2>
+          <p class="text-xs text-slate-500 mt-1">كود SQL بصيغة PostgreSQL لحساب فترات الخمول وتصنيف المستخدمين (مكتوب على بيانات محاكاة)</p>
+        </div>
+
+        <!-- Query 1 -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-800">
+            <span>1. دالة <code class="text-violet-700 bg-slate-100 px-1 py-0.5 rounded font-mono">LAG()</code> لحساب فارق الأيام بين الجلسات واكتشاف خطر الـ Churn:</span>
+            <span class="text-slate-400 font-mono text-[11px]">Dialect: PostgreSQL</span>
+          </div>
+          <div class="sql-code-block rounded-xl p-4 text-slate-200 text-xs font-mono overflow-x-auto leading-relaxed">
+<span class="text-purple-400 font-bold">WITH</span> user_session_intervals <span class="text-purple-400 font-bold">AS</span> (
+    <span class="text-purple-400 font-bold">SELECT</span> 
+        user_id,
+        session_id,
+        event_timestamp,
+        <span class="text-slate-500">-- جلب توقيت الجلسة السابقة لنفس المستخدم</span>
+        <span class="text-blue-400 font-bold">LAG</span>(event_timestamp, <span class="text-amber-400">1</span>) <span class="text-purple-400 font-bold">OVER</span> (
+            <span class="text-purple-400 font-bold">PARTITION BY</span> user_id 
+            <span class="text-purple-400 font-bold">ORDER BY</span> event_timestamp <span class="text-purple-400 font-bold">ASC</span>
+        ) <span class="text-purple-400 font-bold">AS</span> prev_session_timestamp
+    <span class="text-purple-400 font-bold">FROM</span> product_analytics_events
+    <span class="text-purple-400 font-bold">WHERE</span> event_name = <span class="text-emerald-400">'session_start'</span>
+)
+<span class="text-purple-400 font-bold">SELECT</span> 
+    user_id,
+    session_id,
+    ROUND(<span class="text-blue-400 font-bold">EXTRACT</span>(EPOCH <span class="text-purple-400 font-bold">FROM</span> (event_timestamp - prev_session_timestamp)) / <span class="text-amber-400">86400</span>, <span class="text-amber-400">1</span>) <span class="text-purple-400 font-bold">AS</span> days_between_sessions,
+    <span class="text-purple-400 font-bold">CASE</span> 
+        <span class="text-purple-400 font-bold">WHEN</span> (event_timestamp - prev_session_timestamp) > <span class="text-purple-400 font-bold">INTERVAL</span> <span class="text-emerald-400">'14 days'</span> <span class="text-purple-400 font-bold">THEN</span> <span class="text-rose-400">'High Churn Risk'</span>
+        <span class="text-purple-400 font-bold">WHEN</span> (event_timestamp - prev_session_timestamp) <= <span class="text-purple-400 font-bold">INTERVAL</span> <span class="text-emerald-400">'3 days'</span> <span class="text-purple-400 font-bold">THEN</span> <span class="text-emerald-400">'Highly Engaged'</span>
+        <span class="text-purple-400 font-bold">ELSE</span> <span class="text-blue-400">'Normal Active'</span>
+    <span class="text-purple-400 font-bold">END AS</span> churn_risk_segment
+<span class="text-purple-400 font-bold">FROM</span> user_session_intervals
+<span class="text-purple-400 font-bold">WHERE</span> prev_session_timestamp <span class="text-purple-400 font-bold">IS NOT NULL</span>
+<span class="text-purple-400 font-bold">ORDER BY</span> days_between_sessions <span class="text-purple-400 font-bold">DESC</span>;
+          </div>
+        </div>
+
+        <!-- Query 2 -->
+        <div class="mt-6 space-y-2">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-800">
+            <span>2. دمج متعدد الجداول (<code class="text-violet-700 bg-slate-100 px-1 py-0.5 rounded font-mono">INNER / LEFT JOIN</code>) لحساب التحويل والإيراد لكل حملة:</span>
+            <span class="text-slate-400 font-mono text-[11px]">Dialect: PostgreSQL</span>
+          </div>
+          <div class="sql-code-block rounded-xl p-4 text-slate-200 text-xs font-mono overflow-x-auto leading-relaxed">
+<span class="text-purple-400 font-bold">SELECT</span> 
+    c.channel_name,
+    COUNT(<span class="text-purple-400 font-bold">DISTINCT</span> u.user_id) <span class="text-purple-400 font-bold">AS</span> total_signups,
+    COUNT(<span class="text-purple-400 font-bold">DISTINCT</span> s.subscription_id) <span class="text-purple-400 font-bold">AS</span> paid_conversions,
+    ROUND(COUNT(<span class="text-purple-400 font-bold">DISTINCT</span> s.subscription_id) * <span class="text-amber-400">100.0</span> / NULLIF(COUNT(<span class="text-purple-400 font-bold">DISTINCT</span> u.user_id), <span class="text-amber-400">0</span>), <span class="text-amber-400">2</span>) <span class="text-purple-400 font-bold">AS</span> conversion_rate_pct,
+    ROUND(SUM(s.monthly_price_usd), <span class="text-amber-400">2</span>) <span class="text-purple-400 font-bold">AS</span> total_generated_mrr
+<span class="text-purple-400 font-bold">FROM</span> marketing_attribution_campaigns c
+<span class="text-purple-400 font-bold">INNER JOIN</span> app_users u <span class="text-purple-400 font-bold">ON</span> c.campaign_id = u.acquisition_campaign_id
+<span class="text-purple-400 font-bold">LEFT JOIN</span> user_subscriptions s <span class="text-purple-400 font-bold">ON</span> u.user_id = s.user_id <span class="text-purple-400 font-bold">AND</span> s.status = <span class="text-emerald-400">'active'</span>
+<span class="text-purple-400 font-bold">GROUP BY</span> c.channel_name
+<span class="text-purple-400 font-bold">ORDER BY</span> total_generated_mrr <span class="text-purple-400 font-bold">DESC</span>;
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- TAB 5: DATA INGESTION & QUALITY AUDIT (ETL)              -->
+    <!-- ========================================================= -->
+    <div id="view-lab" class="tab-view space-y-6 hidden">
+      <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-xs">
+        
+        <div class="pb-4 mb-4 border-b border-slate-200">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold mb-1">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Automated ETL & Quality Pipeline
+          </div>
+          <h2 class="text-xl font-bold text-slate-900">سجل فحص جودة البيانات وتنظيفها آلياً (Data Cleaning Audit)</h2>
+          <p class="text-xs text-slate-500 mt-1">تطبيق 18 قاعدة جودة بيانات قياسية لضمان موثوقية المقاييس قبل اتخاذ قرارات النمو</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-center">
+            <div class="text-xs text-slate-500 font-bold">درجة جودة البيانات الكلية</div>
+            <div class="text-4xl font-black text-emerald-600 mt-2 tnum">96%</div>
+            <div class="text-[11px] text-slate-400 mt-1">على بيانات محاكاة · 18 قاعدة</div>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+            <div class="text-xs text-slate-500 font-bold">الاكتمال (Completeness)</div>
+            <div class="text-2xl font-black text-slate-900 mt-1 tnum">98.4%</div>
+            <div class="text-[11px] text-slate-400">عُوّض 312 حقل فارغ بالوسيط</div>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+            <div class="text-xs text-slate-500 font-bold">التفرد (Uniqueness)</div>
+            <div class="text-2xl font-black text-slate-900 mt-1 tnum">99.1%</div>
+            <div class="text-[11px] text-slate-400">حُذف 1,204 صف مكرر</div>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+            <div class="text-xs text-slate-500 font-bold">الاتساق (Consistency)</div>
+            <div class="text-2xl font-black text-slate-900 mt-1 tnum">95.2%</div>
+            <div class="text-[11px] text-slate-400">توحيد التواريخ على ISO 8601</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- TAB 6: EVENT TRACKING (GA4 / MIXPANEL)                    -->
+    <!-- ========================================================= -->
+    <div id="view-tracking" class="tab-view space-y-6 hidden">
+      <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-xs">
+        
+        <div class="pb-4 mb-4 border-b border-slate-200">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-xs font-bold mb-1">
+            <i data-lucide="crosshair" class="w-3.5 h-3.5"></i> Event Taxonomy Architecture
+          </div>
+          <h2 class="text-xl font-bold text-slate-900">هندسة تتبع الأحداث (GA4 & Mixpanel Event Taxonomy)</h2>
+          <p class="text-xs text-slate-500 mt-1">قاموس الأحداث السلوكية التي تم تتبعها لحساب مسارات التحويل والاحتفاظ بدقة</p>
+        </div>
+
+        <div class="overflow-x-auto rounded-lg border border-slate-200">
+          <table class="w-full text-xs text-start divide-y divide-slate-200">
+            <thead class="bg-slate-100 text-slate-700 font-bold">
+              <tr>
+                <th class="py-2.5 px-3">اسم الحدث (Event Name)</th>
+                <th class="py-2.5 px-3">المشغل (Trigger Action)</th>
+                <th class="py-2.5 px-3">المعلمات الأساسية (Parameters)</th>
+                <th class="py-2.5 px-3">المنصة المتوافقة</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-mono">
+              <tr>
+                <td class="py-2.5 px-3 font-bold text-violet-700">user_signup</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">إتمام تسجيل الحساب</td>
+                <td class="py-2.5 px-3 text-slate-500">method, utm_source, utm_campaign</td>
+                <td class="py-2.5 px-3 font-sans"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">GA4 / Mixpanel</span></td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 font-bold text-violet-700">onboarding_step_completed</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">تجاوز خطوة في معالج التهيئة</td>
+                <td class="py-2.5 px-3 text-slate-500">step_number, time_spent_sec, skipped</td>
+                <td class="py-2.5 px-3 font-sans"><span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 text-[10px] font-bold">Amplitude</span></td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 font-bold text-violet-700">report_generated</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">توليد تقرير تحليلي (Aha! Moment)</td>
+                <td class="py-2.5 px-3 text-slate-500">report_type, rows_count, export_type</td>
+                <td class="py-2.5 px-3 font-sans"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">Core Metric</span></td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 font-bold text-violet-700">subscription_purchased</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">دفع اشتراك شهري/سنوي</td>
+                <td class="py-2.5 px-3 text-slate-500">plan_id, currency, mrr_value, coupon</td>
+                <td class="py-2.5 px-3 font-sans"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">GA4 E-commerce</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>الساعة المهمة (Data Decision Engine V2)</strong> · مشروع تحليلات المنتجات والنمو
+      </div>
+      <div>
+        <span>إعداد: <strong>محمد شعبان</strong> · Product Data Analyst</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= LOGIC SCRIPT ================= -->
+  <script>
+    if (window.lucide) { lucide.createIcons(); }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-view').forEach(v => v.classList.add('hidden'));
+      const target = document.getElementById(`view-${tabId}`);
+      if (target) target.classList.remove('hidden');
+
+      document.querySelectorAll('.nav-tab').forEach(b => {
+        b.classList.remove('active', 'text-violet-700', 'bg-white', 'shadow-xs', 'font-bold');
+        b.classList.add('text-slate-600');
+      });
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active', 'text-violet-700', 'bg-white', 'shadow-xs', 'font-bold');
+        activeBtn.classList.remove('text-slate-600');
+      }
+
+      window.dispatchEvent(new Event('resize'));
+    }
+
+    let isEnglish = false;
+    function toggleLang() {
+      isEnglish = !isEnglish;
+      document.documentElement.lang = isEnglish ? 'en' : 'ar';
+      document.documentElement.dir = isEnglish ? 'ltr' : 'rtl';
+      document.getElementById('lang-btn-text').innerText = isEnglish ? 'العربية' : 'English';
+    }
+
+    // Chart Inits
+    window.addEventListener('DOMContentLoaded', () => {
+      // Activity Chart
+      const ctxAct = document.getElementById('chart-product-activity');
+      if (ctxAct) {
+        const labels = Array.from({length: 30}, (_, i) => `D-${30 - i}`);
+        const dau = [11200, 11450, 11300, 11800, 12100, 12050, 12400, 12600, 12500, 12900, 13100, 13400, 13200, 13600, 13800, 13750, 14100, 14000, 14300, 14500, 14400, 14700, 14650, 14800, 14780, 14700, 14760, 14790, 14800, 14820];
+        const events = dau.map(v => Math.round(v * 4.6));
+
+        new Chart(ctxAct, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: 'المستخدمون النشطون (DAU)',
+                data: dau,
+                borderColor: '#7c3aed',
+                backgroundColor: 'rgba(124, 58, 237, 0.08)',
+                borderWidth: 2.5,
+                fill: true,
+                tension: 0.35,
+                pointRadius: 0
+              },
+              {
+                label: 'إجمالي الأحداث (Total Events)',
+                data: events,
+                borderColor: '#14b8a6',
+                borderWidth: 2,
+                borderDash: [5, 5],
+                fill: false,
+                tension: 0.35,
+                pointRadius: 0
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { position: 'top', align: 'end' } }
+          }
+        });
+      }
+
+      // Funnel Chart
+      const ctxFun = document.getElementById('chart-funnel-bar');
+      if (ctxFun) {
+        new Chart(ctxFun, {
+          type: 'bar',
+          data: {
+            labels: ['1. زيارة الموقع (48.2k)', '2. إنشاء حساب (30.1k)', '3. إكمال Onboarding (20.1k)', '4. تفعيل الميزة (13.7k)', '5. اشتراك مدفوع (4.7k)'],
+            datasets: [{
+              data: [48200, 30125, 20150, 13688, 4723],
+              backgroundColor: ['#7c3aed', '#8b5cf6', '#f43f5e', '#a78bfa', '#10b981'],
+              borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

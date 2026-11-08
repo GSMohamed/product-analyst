@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohamed Shaban - Product Data Analyst Resume</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    @page {
+      size: A4;
+      margin: 12mm 12mm 12mm 12mm;
+    }
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color: #1e293b;
+      background: #f8fafc;
+    }
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 9.5pt;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .cv-container {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+      }
+      a {
+        text-decoration: none !important;
+        color: #1e293b !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body class="py-8 px-4 sm:px-6">
+
+  <!-- Floating Print & Download Toolbar (Hidden in Print) -->
+  <div class="no-print max-w-4xl mx-auto mb-6 flex flex-wrap items-center justify-between gap-3 bg-slate-900 text-white p-4 rounded-xl shadow-lg">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="text-sm font-bold">Product Analyst Tailored CV · ATS & Foreign Companies Optimized</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold text-xs shadow transition-all transform active:scale-95">
+        <i data-lucide="printer" class="w-4 h-4"></i>
+        <span>طباعة / حفظ كـ PDF (Save as PDF)</span>
+      </button>
+      <a href="dashboard.html" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs border border-slate-700 transition-all">
+        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+        <span>فتح الديمو التفاعلي (Live Demo)</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Main CV Sheet -->
+  <main class="cv-container max-w-4xl mx-auto bg-white p-8 sm:p-12 rounded-2xl shadow-xl border border-slate-200 text-slate-800">
+    
+    <!-- ================= HEADER ================= -->
+    <header class="border-b border-slate-200 pb-5 mb-5">
+      <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+        <div>
+          <h1 class="text-3xl font-extrabold tracking-tight text-slate-900">MOHAMED SHABAN</h1>
+          <p class="text-base font-bold text-violet-700 mt-0.5 tracking-wide">
+            Product Data Analyst | Growth & Business Intelligence Specialist
+          </p>
+        </div>
+        <div class="text-xs text-slate-500 font-medium sm:text-right">
+          <span>Menoufia, Egypt</span> • <span>Open to Remote / Relocation</span>
+        </div>
+      </div>
+
+      <!-- Contact & Links Bar -->
+      <div class="mt-3.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-600 font-medium">
+        <a href="tel:+201018976419" class="flex items-center gap-1 text-slate-800 hover:text-violet-700 font-semibold">
+          <i data-lucide="phone" class="w-3.5 h-3.5 text-violet-600"></i> +20 101 897 6419
+        </a>
+        <a href="mailto:mooshaban24738914@gmail.com" class="flex items-center gap-1 hover:text-violet-700">
+          <i data-lucide="mail" class="w-3.5 h-3.5 text-violet-600"></i> mooshaban24738914@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/mohamed-shaban-b52933368/" target="_blank" class="flex items-center gap-1 hover:text-violet-700 text-blue-700 font-semibold">
+          <i data-lucide="linkedin" class="w-3.5 h-3.5"></i> LinkedIn Profile
+        </a>
+        <a href="https://gsmohamed.github.io/Portfolio/" target="_blank" class="flex items-center gap-1 hover:text-violet-700 text-emerald-700 font-semibold">
+          <i data-lucide="globe" class="w-3.5 h-3.5"></i> Online Portfolio
+        </a>
+        <a href="https://github.com/gsmohamed" target="_blank" class="flex items-center gap-1 hover:text-violet-700 text-slate-700 font-semibold">
+          <i data-lucide="github" class="w-3.5 h-3.5"></i> GitHub
+        </a>
+      </div>
+    </header>
+
+    <!-- ================= PROFESSIONAL SUMMARY ================= -->
+    <section class="mb-5">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-200 pb-1 mb-2">
+        Professional Summary
+      </h2>
+      <p class="text-xs leading-relaxed text-slate-700">
+        Results-oriented <strong>Product Data Analyst</strong> and Computer Science undergraduate (GPA: 3.2/4.0) with hands-on experience designing end-to-end user behavioral models, automated ETL data pipelines, and conversion analytics platforms across <strong>140K+ simulated product events</strong>. Skilled in analyzing multi-step conversion funnels, longitudinal cohort retention matrices (Heatmaps), and user churn signals. Highly proficient in <strong>advanced SQL (Window Functions: <code class="bg-slate-100 px-1 py-0.5 rounded text-violet-700 font-mono text-[11px]">LAG</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-violet-700 font-mono text-[11px]">LEAD</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-violet-700 font-mono text-[11px]">ROW_NUMBER</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-violet-700 font-mono text-[11px]">DENSE_RANK</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-violet-700 font-mono text-[11px]">SUM() OVER PARTITION</code>)</strong>, Python (Pandas, Scikit-learn), Power BI (DAX), and modern product event instrumentation (GA4, Mixpanel, Amplitude). Completed a 120-hour intensive Business Intelligence Development program at ITI.
+      </p>
+    </section>
+
+    <!-- ================= TECHNICAL ARSENAL / CORE SKILLS ================= -->
+    <section class="mb-5">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-200 pb-1 mb-2">
+        Technical Skills & Product Domain Expertise
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+        <div>
+          <span class="font-bold text-slate-900">• Product Analytics & Growth:</span>
+          <span class="text-slate-700"> Funnel Drop-off Analysis, Cohort Retention Matrices (Retention Curves), User Journey Mapping, Churn Risk Segmentation, A/B Test Impact Forecasting, Feature Adoption Tracking, Stickiness Ratio (DAU/MAU).</span>
+        </div>
+        <div>
+          <span class="font-bold text-slate-900">• Advanced SQL & Warehousing:</span>
+          <span class="text-slate-700"> Window Functions (`LAG`, `LEAD`, `ROW_NUMBER`, `DENSE_RANK`, `SUM() OVER`), Relational JOINs, CTEs, Subqueries, Query Optimization, Star Schema, PostgreSQL, SQL Server.</span>
+        </div>
+        <div>
+          <span class="font-bold text-slate-900">• Event Taxonomy & Tracking:</span>
+          <span class="text-slate-700"> Event taxonomy design for GA4, Mixpanel &amp; Amplitude (event dictionaries, UTM campaign attribution, user properties).</span>
+        </div>
+        <div>
+          <span class="font-bold text-slate-900">• Programming & BI Tools:</span>
+          <span class="text-slate-700"> Python (Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn), Power BI, Advanced DAX, Tableau, Google Looker Studio, Automated ETL Data Cleaning Pipelines.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FEATURED PRODUCT ANALYTICS PROJECTS ================= -->
+    <section class="mb-5">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-200 pb-1 mb-2.5">
+        Featured Product & Data Analytics Projects
+      </h2>
+
+      <!-- Project 1 (The Flagship BI Platform) -->
+      <div class="mb-3.5">
+        <div class="flex items-baseline justify-between">
+          <h3 class="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+            <span>Autonomous Product Analytics & Decision Engine (SaaS Platform)</span>
+            <span class="text-[10px] font-mono px-1.5 py-0.2 bg-violet-100 text-violet-800 rounded font-semibold">Flagship Project</span>
+          </h3>
+          <span class="text-xs text-slate-500 font-medium">Python · Advanced SQL · JS/SPA · Streamlit</span>
+        </div>
+        <p class="text-[11px] text-slate-600 italic mb-1">
+          End-to-end interactive Product BI engine built on a simulated (synthetic) SaaS event dataset, automated data quality scoring, and conversion telemetry.
+        </p>
+        <ul class="list-disc list-outside ml-4 space-y-1 text-xs text-slate-700 leading-normal">
+          <li><strong>Automated ETL & Quality Pipeline:</strong> Built a data-cleaning pipeline that cleans 140K+ simulated event logs, applying 18 deterministic rules (deduplication, median imputation, ISO 8601 timestamps), cutting data preparation time by <strong>85%</strong> and achieving a <strong>96% Data Quality (DQ) score</strong>.</li>
+          <li><strong>Funnel Drop-off & Friction Diagnostics:</strong> Engineered a 5-stage conversion funnel (Landing ➔ Signup ➔ Onboarding ➔ Aha! Feature ➔ Paid Subscription), isolating a <strong>33.1% friction drop-off</strong> between signup and onboarding, with an actionable A/B test forecast of <strong>+$16.9k MRR</strong>.</li>
+          <li><strong>Longitudinal Cohort Retention Heatmap:</strong> Formulated weekly cohort matrices across 8 periods, showing Week-4 retention rising from ~25% to ~33% for post-release cohorts and a <strong>+14.2 pp D30 retention lift</strong> correlated with core feature activation within 48 hours.</li>
+          <li><strong>SQL Analytics Lab:</strong> Authored window queries utilizing <code class="font-mono text-violet-700">LAG()</code> to calculate session intervals and flag inactive users before churn.</li>
+        </ul>
+      </div>
+
+      <!-- Project 2 (Mobility & Ride Hailing - Uber) -->
+      <div class="mb-3.5">
+        <div class="flex items-baseline justify-between">
+          <h3 class="text-sm font-bold text-slate-900">
+            Ride-Hailing User Retention & Session Inactivity Analysis (Uber Dataset)
+          </h3>
+          <span class="text-xs text-slate-500 font-medium">Python · SQL · Cohort Analysis · Time-Series</span>
+        </div>
+        <p class="text-[11px] text-slate-600 italic mb-1">
+          Analyzed 50K+ trip sessions to model user demand elasticity, driver allocation, and repeat booking frequency.
+        </p>
+        <ul class="list-disc list-outside ml-4 space-y-1 text-xs text-slate-700 leading-normal">
+          <li>Conducted behavioral cohort retention tracking across customer sign-up months, measuring Day-1, Day-7, and Day-30 retention decay.</li>
+          <li>Employed SQL Window Functions to calculate inter-trip time gaps (<code class="font-mono text-violet-700">DATEDIFF</code> on lagged timestamps), categorizing users into Active, At-Risk, and Dormant clusters.</li>
+          <li>Formulated surge-pricing and peak-demand window recommendations that boosted simulated driver allocation efficiency by <strong>35%</strong> and trip revenue optimization by <strong>20%</strong>.</li>
+        </ul>
+      </div>
+
+      <!-- Project 3 (E-Commerce Multi-Touch Funnel) -->
+      <div class="mb-3">
+        <div class="flex items-baseline justify-between">
+          <h3 class="text-sm font-bold text-slate-900">
+            E-Commerce Multi-Channel Funnel & Customer Lifetime Value (LTV) Analytics
+          </h3>
+          <span class="text-xs text-slate-500 font-medium">Power BI · DAX · Advanced Relational SQL</span>
+        </div>
+        <p class="text-[11px] text-slate-600 italic mb-1">
+          Consolidated multi-source marketing attribution and e-commerce transaction logs into a unified relational data warehouse model.
+        </p>
+        <ul class="list-disc list-outside ml-4 space-y-1 text-xs text-slate-700 leading-normal">
+          <li>Constructed a Star Schema data model with complex DAX measures calculating Net Revenue Retention (NRR), Average Revenue Per User (ARPU), and Customer Acquisition Cost (CAC).</li>
+          <li>Executed multi-table SQL <code class="font-mono text-violet-700">INNER/LEFT JOINs</code> combining advertising spend with user checkout tables to identify high-converting referral channels (13.5% conversion).</li>
+          <li>Delivered dynamic executive dashboards with automated refresh and drill-down dimensions, reducing manual reporting cycles by <strong>45%</strong>.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- ================= WORK EXPERIENCE / INTENSIVE TRAINING ================= -->
+    <section class="mb-5">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-200 pb-1 mb-2">
+        Professional Experience & Training
+      </h2>
+
+      <div class="mb-2">
+        <div class="flex items-baseline justify-between">
+          <div>
+            <h3 class="text-xs font-bold text-slate-900">Business Intelligence & Data Engineering Developer — Trainee</h3>
+            <div class="text-xs text-violet-700 font-semibold">Information Technology Institute (ITI) · Menoufia, Egypt</div>
+          </div>
+          <span class="text-xs text-slate-500 font-medium">2024</span>
+        </div>
+        <ul class="list-disc list-outside ml-4 mt-1 space-y-0.5 text-xs text-slate-700">
+          <li>Completed an intensive 120-hour Business Intelligence program.</li>
+          <li>Designed data warehouse and normalized relational schemas in training projects, and implemented scheduled SQL Server ETL refresh pipelines with Row-Level Security (RLS).</li>
+          <li>Collaborated in agile sprint teams to deliver business dashboards for case-study projects.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= EDUCATION & CERTIFICATIONS ================= -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1 border-t border-slate-200">
+      
+      <!-- Education -->
+      <div>
+        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Education</h2>
+        <div class="text-xs">
+          <div class="font-bold text-slate-900">Bachelor of Science in Computer Science</div>
+          <div class="text-slate-600">Faculty of Science, Menoufia University, Egypt</div>
+          <div class="text-slate-500 mt-0.5 font-medium">4th Year Student · GPA: <strong>3.2 / 4.0</strong> (Expected: June 2027)</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">Relevant Coursework: Database Systems, Algorithms, Statistics & Probability, Software Engineering.</div>
+        </div>
+      </div>
+
+      <!-- Certifications & Honors -->
+      <div>
+        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Certifications & Honors</h2>
+        <ul class="space-y-1 text-xs text-slate-700">
+          <li class="flex items-start gap-1">
+            <span class="text-violet-600 font-bold">•</span>
+            <span><strong>BI Development Training (120 Hours)</strong> — ITI (2024)</span>
+          </li>
+          <li class="flex items-start gap-1">
+            <span class="text-violet-600 font-bold">•</span>
+            <span><strong>Professional Python & Predictive Modeling</strong> — DataCamp (2024)</span>
+          </li>
+          <li class="flex items-start gap-1">
+            <span class="text-violet-600 font-bold">•</span>
+            <span><strong>Top 10 Finalist</strong> — E-Gnite Entrepreneurship Competition, Nile University (Sep 2026)</span>
+          </li>
+        </ul>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    if (window.lucide) { lucide.createIcons(); }
+  </script>
+</body>
+</html>

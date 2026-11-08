@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohamed Shaban · Data Analyst & BI Specialist</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-color: #fafafa;
+      color: #0f172a;
+    }
+    .font-mono {
+      font-family: "JetBrains Mono", monospace;
+    }
+  </style>
+</head>
+<body class="selection:bg-slate-900 selection:text-white">
+
+  <!-- ================= TOP NAV ================= -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Logo / Name -->
+      <a href="#hero" class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-slate-900 text-white font-extrabold text-sm flex items-center justify-center shadow-xs">
+          MS
+        </div>
+        <div>
+          <span class="font-extrabold text-slate-900 text-sm tracking-tight block leading-tight">Mohamed Shaban</span>
+          <span class="text-[11px] text-slate-500 font-medium block">Data & Product Analyst</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-600">
+        <a href="#about" class="hover:text-slate-900 transition-colors">About</a>
+        <a href="#skills" class="hover:text-slate-900 transition-colors">Technical Arsenal</a>
+        <a href="#projects" class="hover:text-slate-900 transition-colors">Projects</a>
+        <a href="#education" class="hover:text-slate-900 transition-colors">Education & Certifications</a>
+        <a href="#contact" class="hover:text-slate-900 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Action -->
+      <div class="flex items-center gap-3">
+        <a href="cv.html" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-xs transition-all">
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+          <span>Resume</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section id="hero" class="pt-16 pb-14 bg-white border-b border-slate-200/70">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl space-y-5">
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>Open to Full-Time, Part-Time & Remote Roles</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.18]">
+          Transforming raw data into actionable business & product insights.
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
+          I build end-to-end data solutions, interactive business dashboards, and behavioral analytics models using <strong>Python, SQL, Power BI, and Tableau</strong>. Computer Science undergraduate (GPA: 3.2/4.0) and ITI Business Intelligence Development graduate.
+        </p>
+
+        <!-- Quick Facts Pill Bar -->
+        <div class="pt-2 flex flex-wrap items-center gap-y-2 gap-x-5 text-xs text-slate-500 font-medium">
+          <span class="flex items-center gap-1.5 text-slate-700 font-semibold">
+            <i data-lucide="bar-chart-2" class="w-4 h-4 text-slate-500"></i> 2+ Years Project Experience
+          </span>
+          <span class="text-slate-300">•</span>
+          <span class="flex items-center gap-1.5 text-slate-700 font-semibold">
+            <i data-lucide="map-pin" class="w-4 h-4 text-slate-500"></i> Menoufia, Egypt
+          </span>
+          <span class="text-slate-300">•</span>
+          <span class="flex items-center gap-1.5 text-slate-700 font-semibold">
+            <i data-lucide="graduation-cap" class="w-4 h-4 text-slate-500"></i> B.Sc. Computer Science
+          </span>
+          <span class="text-slate-300">•</span>
+          <span class="flex items-center gap-1.5 text-slate-700 font-semibold">
+            <i data-lucide="award" class="w-4 h-4 text-slate-500"></i> ITI BI Certified (120h)
+          </span>
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div class="pt-4 flex flex-wrap items-center gap-3">
+          <a href="#projects" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-xs transition-all">
+            <span>View Featured Projects</span>
+            <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
+          </a>
+          <a href="mailto:mooshaban24738914@gmail.com" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs transition-all">
+            <i data-lucide="mail" class="w-3.5 h-3.5 text-slate-500"></i>
+            <span>Get in Touch</span>
+          </a>
+          <a href="https://www.linkedin.com/in/mohamed-shaban-b52933368/" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-blue-200 bg-blue-50/50 hover:bg-blue-50 text-blue-700 font-bold text-xs transition-all">
+            <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ME ================= -->
+  <section id="about" class="py-16 max-w-6xl mx-auto px-4 sm:px-6 border-b border-slate-200/70">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <div class="lg:col-span-4">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">About Me</h2>
+        <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Analytical Rigor & End-to-End Problem Solving</h3>
+      </div>
+
+      <div class="lg:col-span-8 space-y-4 text-sm text-slate-600 leading-relaxed">
+        <p>
+          I’m a <strong>Data Analyst & Business Intelligence Specialist</strong> passionate about converting complex, noisy datasets into clear, meaningful insights that drive business growth. I design end-to-end data solutions: from data cleaning pipelines and relational modeling to interactive dashboards that support strategic executive decisions.
+        </p>
+        <p>
+          My foundation in <strong>Computer Science at Menoufia University</strong> combined with rigorous 120-hour training at the <strong>Information Technology Institute (ITI)</strong> equipped me with deep expertise in database engineering, data warehousing, and advanced analytical frameworks (Funnel conversion, cohort retention, time-series forecasting, and automated ETL).
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Domain Competencies Grid -->
+    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      
+      <div class="p-5 rounded-xl border border-slate-200 bg-white shadow-xs">
+        <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 mb-3">
+          <i data-lucide="bar-chart" class="w-4 h-4"></i>
+        </div>
+        <h4 class="font-bold text-slate-900 text-sm">Data / Business Analytics</h4>
+        <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+          KPI Design, Trend Analysis, Variance Reporting, Business Intelligence Dashboards, and Stakeholder Reporting.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-xl border border-slate-200 bg-white shadow-xs">
+        <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 mb-3">
+          <i data-lucide="filter" class="w-4 h-4"></i>
+        </div>
+        <h4 class="font-bold text-slate-900 text-sm">Product & Growth Analytics</h4>
+        <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+          Conversion Funnel Drop-offs, Longitudinal Cohort Retention Matrices, Churn Prediction, and Stickiness (DAU/MAU).
+        </p>
+      </div>
+
+      <div class="p-5 rounded-xl border border-slate-200 bg-white shadow-xs">
+        <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 mb-3">
+          <i data-lucide="database" class="w-4 h-4"></i>
+        </div>
+        <h4 class="font-bold text-slate-900 text-sm">DB Engineering & ETL</h4>
+        <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+          Star Schema & Dimensional Modeling, Data Warehousing, Query Optimization, Automated Data Pipelines, and SQL Server / PostgreSQL.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-xl border border-slate-200 bg-white shadow-xs">
+        <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 mb-3">
+          <i data-lucide="layout" class="w-4 h-4"></i>
+        </div>
+        <h4 class="font-bold text-slate-900 text-sm">BI Tools & Visual Storytelling</h4>
+        <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+          Power BI, Advanced DAX, Tableau, Excel (Power Query, Power Pivot), Google Looker Studio, and Executive MIS Reporting.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-xl border border-slate-200 bg-white shadow-xs">
+        <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 mb-3">
+          <i data-lucide="cpu" class="w-4 h-4"></i>
+        </div>
+        <h4 class="font-bold text-slate-900 text-sm">Programming & Data Wrangling</h4>
+        <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+          Python (Pandas, NumPy), Advanced SQL (Window Functions: LAG, LEAD, ROW_NUMBER), Data Cleaning Pipelines, and Missing Value Imputation.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-xl border border-slate-200 bg-white shadow-xs">
+        <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 mb-3">
+          <i data-lucide="trending-up" class="w-4 h-4"></i>
+        </div>
+        <h4 class="font-bold text-slate-900 text-sm">Predictive Modeling & ML</h4>
+        <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+          Time-Series Demand Forecasting, Classification Models, Customer Segmentation (Scikit-Learn, Statsmodels), and Evaluation Tuning.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= TECHNICAL ARSENAL ================= -->
+  <section id="skills" class="py-16 max-w-6xl mx-auto px-4 sm:px-6 border-b border-slate-200/70">
+    <div class="mb-10">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Skills Matrix</h2>
+      <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Technical Arsenal</h3>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-xs">
+      
+      <!-- Column 1 -->
+      <div class="space-y-3">
+        <h4 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+          <i data-lucide="pie-chart" class="w-4 h-4 text-violet-600"></i>
+          <span>Data Visualization</span>
+        </h4>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Power BI</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Tableau</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">DAX Modeling</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Excel Dashboards</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Google Looker Studio</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Chart.js</span>
+        </div>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="space-y-3">
+        <h4 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+          <i data-lucide="terminal" class="w-4 h-4 text-blue-600"></i>
+          <span>Databases & Querying</span>
+        </h4>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">SQL (Advanced)</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold font-mono">LAG() / LEAD()</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold font-mono">ROW_NUMBER()</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">PostgreSQL</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">SQL Server</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Query Optimization</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Star Schema</span>
+        </div>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="space-y-3">
+        <h4 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+          <i data-lucide="code" class="w-4 h-4 text-emerald-600"></i>
+          <span>Programming & Python</span>
+        </h4>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Python</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Pandas</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">NumPy</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Scikit-Learn</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Matplotlib & Seaborn</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">ETL Pipelines</span>
+        </div>
+      </div>
+
+      <!-- Column 4 -->
+      <div class="space-y-3">
+        <h4 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+          <i data-lucide="target" class="w-4 h-4 text-amber-600"></i>
+          <span>Analytics & Tracking</span>
+        </h4>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Funnel Analysis</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Cohort Retention</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">GA4 Event Taxonomy</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Mixpanel / Amplitude Taxonomy</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">A/B Testing</span>
+          <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 font-semibold">Time-Series Forecast</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FEATURED PROJECTS ================= -->
+  <section id="projects" class="py-16 max-w-6xl mx-auto px-4 sm:px-6 border-b border-slate-200/70">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+      <div>
+        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Portfolio Works</h2>
+        <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Featured Projects & Case Studies</h3>
+        <p class="text-xs text-slate-500 mt-1">Spanning Product Analytics, Business Intelligence, Data Warehousing, and Predictive Modeling.</p>
+      </div>
+
+      <!-- Project Filter Pills -->
+      <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg text-xs font-semibold">
+        <button onclick="filterProjects('all')" id="pf-all" class="px-3 py-1 rounded bg-white text-slate-900 shadow-xs">All Projects (6)</button>
+        <button onclick="filterProjects('product')" id="pf-product" class="px-3 py-1 rounded text-slate-600 hover:text-slate-900">Product & BI</button>
+        <button onclick="filterProjects('ml')" id="pf-ml" class="px-3 py-1 rounded text-slate-600 hover:text-slate-900">ML & Forecasting</button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
+      
+      <!-- Project 1: Flagship SaaS Analytics Platform -->
+      <div class="project-item product p-6 rounded-2xl border border-slate-200 bg-white shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-violet-100 text-violet-800 text-[11px] font-bold">
+              <i data-lucide="star" class="w-3 h-3 fill-current text-violet-600"></i> Flagship Project
+            </span>
+            <span class="text-xs text-slate-400 font-mono">140K+ Simulated Events</span>
+          </div>
+
+          <h4 class="text-lg font-bold text-slate-900">
+            Autonomous Product Analytics & Decision Engine
+          </h4>
+
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Engineered an interactive product analytics platform on a simulated SaaS dataset, analyzing conversion funnels and longitudinal cohort retention matrices. Built an automated data cleaning pipeline (18 rules) that reduced ETL time by 85%, and identified a 33.1% friction bottleneck in user onboarding.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-mono">
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">PostgreSQL</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Python (Pandas)</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Funnel & Cohorts</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">SQL Window Funcs</span>
+          </div>
+        </div>
+
+        <div class="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-xs text-emerald-700 font-bold">Result: 96% Data Quality · +14.2 pp D30 Lift</span>
+          <a href="dashboard.html" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-violet-700 hover:text-violet-900">
+            <span>Launch Live Demo</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 2: Car Sales Analytics Dashboard -->
+      <div class="project-item product p-6 rounded-2xl border border-slate-200 bg-white shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-semibold">
+              Automotive Business Intelligence
+            </span>
+            <span class="text-xs text-slate-400 font-mono">Power BI · SQL</span>
+          </div>
+
+          <h4 class="text-lg font-bold text-slate-900">
+            Car Sales Analytics & Dealer Performance Dashboard
+          </h4>
+
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Engineered an automated ETL pipeline using SQL and developed a multi-page Power BI dashboard with automated refresh, KPI cards, and drill-down analytics across 5+ sales dimensions, inventory tracking, and sales forecasting.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-mono">
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Power BI</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">SQL Server</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">DAX</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Excel</span>
+          </div>
+        </div>
+
+        <div class="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-xs text-slate-500 font-medium">Result: +30% decision speed · +25% forecast accuracy</span>
+          <a href="https://www.linkedin.com/posts/mohamed-shaban-b52933368_dataanalysis-dashboard-excel-activity-7366873991799554050-ti8f" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-900 hover:text-violet-700">
+            <span>View LinkedIn Post</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 3: Uber Trip Analytics Dashboard -->
+      <div class="project-item product p-6 rounded-2xl border border-slate-200 bg-white shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-semibold">
+              Mobility & On-Demand
+            </span>
+            <span class="text-xs text-slate-400 font-mono">50K+ Trip Records</span>
+          </div>
+
+          <h4 class="text-lg font-bold text-slate-900">
+            Uber Trip Analytics & Demand Optimization Dashboard
+          </h4>
+
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Conducted cohort retention analysis and time-series forecasting on 50K+ trip sessions using Python and SQL to optimize driver allocation, identify peak-demand windows, and calculate user booking frequency intervals with Window Functions (`LAG`).
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-mono">
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Python</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">SQL (LAG/LEAD)</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Power BI</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Tableau</span>
+          </div>
+        </div>
+
+        <div class="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-xs text-slate-500 font-medium">Result: +35% driver efficiency · +20% revenue gain</span>
+          <a href="https://www.linkedin.com/posts/mohamed-shaban-b52933368_datacleaning-datapreparation-datawrangling-activity-7374509297931538432-DM83" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-900 hover:text-violet-700">
+            <span>View LinkedIn Post</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 4: Sales Performance & Profitability -->
+      <div class="project-item product p-6 rounded-2xl border border-slate-200 bg-white shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-semibold">
+              Revenue & Profitability
+            </span>
+            <span class="text-xs text-slate-400 font-mono">ETL & Data Modeling</span>
+          </div>
+
+          <h4 class="text-lg font-bold text-slate-900">
+            Sales Performance, Margin & Customer Segmentation Dashboard
+          </h4>
+
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Consolidated 6+ data sources into a unified Star Schema data model and built dynamic dashboards with trend analysis, customer RFM segmentation, and year-over-year variance reporting.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-mono">
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Power BI</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Excel Power Query</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">SQL Relational Joins</span>
+          </div>
+        </div>
+
+        <div class="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-xs text-slate-500 font-medium">Result: -45% reporting time · +15% sales visibility</span>
+          <a href="https://www.linkedin.com/posts/mohamed-shaban-b52933368_datacleaning-datapreparation-datawrangling-activity-7370057858689839104-Xyzq" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-900 hover:text-violet-700">
+            <span>View LinkedIn Post</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 5: Healthcare Management Dashboard -->
+      <div class="project-item product p-6 rounded-2xl border border-slate-200 bg-white shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-semibold">
+              Healthcare Operations
+            </span>
+            <span class="text-xs text-slate-400 font-mono">Star Schema & DAX</span>
+          </div>
+
+          <h4 class="text-lg font-bold text-slate-900">
+            Healthcare Operations & Patient Flow Management Dashboard
+          </h4>
+
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Designed a star-schema data model and implemented advanced DAX measures for real-time tracking of patient wait times, bed availability, and medical department scheduling KPIs.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-mono">
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Power BI</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">SQL Server</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Advanced DAX</span>
+          </div>
+        </div>
+
+        <div class="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-xs text-slate-500 font-medium">Result: -25% wait time · +30% bed utilization</span>
+          <a href="https://drive.google.com/drive/folders/1c8oaVJiaywIMABzKQEMt4I8XbJELJvp3" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-900 hover:text-violet-700">
+            <span>View Folder</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 6: Predictive Analytics & ML Models -->
+      <div class="project-item ml p-6 rounded-2xl border border-slate-200 bg-white shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-semibold">
+              Machine Learning & Data Science
+            </span>
+            <span class="text-xs text-slate-400 font-mono">Python · Scikit-Learn</span>
+          </div>
+
+          <h4 class="text-lg font-bold text-slate-900">
+            Predictive Analytics, Classification & Time-Series Forecasting
+          </h4>
+
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Built end-to-end forecasting and classification pipelines: exploratory data analysis (EDA), feature selection, hyperparameter tuning, cross-validation, and customer retention modeling.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-mono">
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Python</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Scikit-Learn</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Statsmodels</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700">Plotly</span>
+          </div>
+        </div>
+
+        <div class="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-xs text-slate-500 font-medium">Result: -40% forecast error · 92% model accuracy</span>
+          <a href="https://drive.google.com/drive/folders/1TmAyTsSZ6_yT77cp0d1ipX8vt408NHgu" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-900 hover:text-violet-700">
+            <span>View Notebooks</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= EDUCATION & CERTIFICATIONS ================= -->
+  <section id="education" class="py-16 max-w-6xl mx-auto px-4 sm:px-6 border-b border-slate-200/70">
+    <div class="mb-10">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Academic & Credentials</h2>
+      <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Education & Formal Training</h3>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs">
+      
+      <!-- Education Card -->
+      <div class="p-6 rounded-2xl border border-slate-200 bg-white space-y-3 shadow-xs">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center font-bold">
+            <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-sm">Bachelor of Science in Computer Science</h4>
+            <div class="text-slate-500">Faculty of Science, Menoufia University, Egypt</div>
+          </div>
+        </div>
+
+        <div class="pt-2 flex items-center gap-3">
+          <span class="text-slate-600 font-medium">4th Year Student • Expected Graduation: June 2027</span>
+          <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">GPA: 3.2 / 4.0</span>
+        </div>
+
+        <p class="text-slate-600 leading-relaxed pt-1">
+          Relevant Coursework: Database Systems, Algorithms & Data Structures, Statistical Inference & Probability, Software Engineering, Operations Research.
+        </p>
+      </div>
+
+      <!-- Certifications List -->
+      <div class="p-6 rounded-2xl border border-slate-200 bg-white space-y-3 shadow-xs">
+        <h4 class="font-bold text-slate-900 text-sm mb-2">Professional Training & Honors</h4>
+        
+        <div class="space-y-2.5">
+          <div class="flex items-start gap-2.5">
+            <div class="w-6 h-6 rounded-md bg-violet-100 text-violet-800 font-bold flex items-center justify-center text-[10px] flex-shrink-0 mt-0.5">
+              ITI
+            </div>
+            <div>
+              <div class="font-bold text-slate-900">BI Development Training (120 Hours)</div>
+              <div class="text-slate-500">Information Technology Institute (ITI), 2024</div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5">
+            <div class="w-6 h-6 rounded-md bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-[10px] flex-shrink-0 mt-0.5">
+              DC
+            </div>
+            <div>
+              <div class="font-bold text-slate-900">Professional Python & Predictive Modeling</div>
+              <div class="text-slate-500">DataCamp, 2024</div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5">
+            <div class="w-6 h-6 rounded-md bg-blue-100 text-blue-800 font-bold flex items-center justify-center text-[10px] flex-shrink-0 mt-0.5">
+              CS
+            </div>
+            <div>
+              <div class="font-bold text-slate-900">Data Analysis with Python</div>
+              <div class="text-slate-500">Coursera</div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5">
+            <div class="w-6 h-6 rounded-md bg-amber-100 text-amber-800 font-bold flex items-center justify-center text-[10px] flex-shrink-0 mt-0.5">
+              NU
+            </div>
+            <div>
+              <div class="font-bold text-slate-900">Top 10 Finalist — E-Gnite Entrepreneurship Competition</div>
+              <div class="text-slate-500">Nile University (IECC), Sep 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CONTACT SECTION ================= -->
+  <section id="contact" class="py-16 max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="p-8 sm:p-12 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="space-y-2 text-center md:text-start">
+        <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Let's build impactful data solutions.</h3>
+        <p class="text-slate-500 text-sm max-w-lg">
+          I'm always open to discussing data analysis projects, product growth experiments, or full-time opportunities.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a href="mailto:mooshaban24738914@gmail.com" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>mooshaban24738914@gmail.com</span>
+        </a>
+        <a href="tel:+201018976419" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs transition-colors">
+          <i data-lucide="phone" class="w-4 h-4 text-slate-500"></i>
+          <span>+20 101 897 6419</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="py-8 border-t border-slate-200/80 text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        © 2026 Mohamed Shaban · Data Analyst & BI Specialist
+      </div>
+      <div class="flex items-center gap-5 font-semibold text-slate-600">
+        <a href="https://www.linkedin.com/in/mohamed-shaban-b52933368/" target="_blank" class="hover:text-slate-900">LinkedIn</a>
+        <a href="https://github.com/gsmohamed" target="_blank" class="hover:text-slate-900">GitHub</a>
+        <a href="cv.html" target="_blank" class="hover:text-slate-900">Resume</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (window.lucide) { lucide.createIcons(); }
+
+    function filterProjects(cat) {
+      document.querySelectorAll('#projects-grid .project-item').forEach(item => {
+        if (cat === 'all') {
+          item.style.display = 'flex';
+        } else if (item.classList.contains(cat)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      ['all', 'product', 'ml'].forEach(id => {
+        const btn = document.getElementById(`pf-${id}`);
+        if (id === cat) {
+          btn.className = 'px-3 py-1 rounded bg-white text-slate-900 shadow-xs';
+        } else {
+          btn.className = 'px-3 py-1 rounded text-slate-600 hover:text-slate-900';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
